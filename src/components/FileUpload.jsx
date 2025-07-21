@@ -14,7 +14,7 @@ const FileUpload = () => {
     formData.append('audio', file);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/transcribe', formData);
+      const res = await axios.post('https://automated-meeting-notes-and-task.onrender.com/api/transcribe', formData);
       setMessage(res.data.message);
       setMeetingId(res.data.meetingId);
     } catch (err) {
@@ -25,7 +25,7 @@ const FileUpload = () => {
 
   const handleNotionPush = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/notion', { meetingId });
+      const res = await axios.post('https://automated-meeting-notes-and-task.onrender.com/api/notion', { meetingId });
       setMessage(res.data.message + ` | View: ${res.data.notionPageUrl}`);
     } catch (err) {
       setMessage('Notion push failed');
